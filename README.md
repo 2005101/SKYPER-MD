@@ -1,60 +1,70 @@
 <p align="center">
-  <img src="https://files.catbox.moe/ec9oon.jpg" alt="SKYPER-MD Bot" width="400"/>
+  <img src="./logo.png" alt="SKYPER-MD Banner" width="600"/>
 </p>
 
 <h1 align="center">SKYPER-MD 🤖</h1>
 <p align="center">
   <b>LEGEND PRO ULTRA FAST WhatsApp Bot</b><br>
-  Powered by Baileys + Node.js | Version 2.0.0
+  <i>The Most Stylish Bot in ZIM 🇿🇼</i>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-2.0.0-blue?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Node.js-18+-green?style=flat-square&logo=node.js"/>
+  <img src="https://img.shields.io/badge/Status-Online-brightgreen?style=flat-square"/>
 </p>
 
 <p align="center">
   <a href="https://skyper-md.onrender.com/" target="_blank">
-    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Click%20Here-blue?style=for-the-badge&logo=whatsapp&logoColor=white"/>
+    <img src="https://img.shields.io/badge/🔑%20GET%20PAIR%20CODE-CLICK%20HERE-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
   </a>
 </p>
 
 ---
 
-### 🔥 FEATURES
+### 🤖 BOT PREVIEW
+<p align="center">
+  <img src="./menu.jpg" alt="SKYPER-MD Logo" width="300"/>
+</p>
+<p align="center"><i>Ultra Realistic 8K Cyberpunk Head</i></p>
 
-* **⚡ Lightning Fast**: Built with Baileys latest version
-* **🔑 Pair Code Website**: No QR needed. Link your device in 1 click
-* **🎨 Stylish Menu**: Beautiful box menu with `SKYPER-MD` branding  
-* **📊 Bot Status**: Check uptime, version, and bot health with `.alive`
-* **🚀 Public Mode**: Works for everyone in groups and DMs
-* **🔧 Easy Deploy**: 1-click deploy to Render
-* **🛡️ Stable**: Auto reconnect + session save
+---
+
+### 🔥 FEATURES
+- **⚡ Lightning Fast** - Built with latest Baileys
+- **🔑 Pair Code Website** - No QR. Just enter number and link
+- **🎨 Stylish Menu** - Beautiful box design with `SKYPER-MD` branding  
+- **📊 Bot Status** - `.alive` and `.ping` commands
+- **🌍 Public Mode** - Works in Groups & DMs for everyone
+- **🛡️ Auto Reconnect** - Never goes offline
 
 ### 📲 HOW TO DEPLOY
-
 1. **Fork & Star** this repo ⭐
-2. **Click Pair Button** above and link your WhatsApp
+2. **Click Pair Button** above ↑ and link your WhatsApp number
 3. **Deploy to Render**
-   - Build Command: `npm install`
-   - Start Command: `node index.js`
-   - PORT: `10000`
+
 
 ### ⚙️ COMMANDS
-
 | Command | Description |
 | --- | --- |
 | `.menu` | Show the bot menu |
-| `.alive` | Check if bot is online |
-| `.ping` | Check bot speed |
-
-*More LEGEND commands coming soon...*
+| `.alive` | Check bot status & uptime |
+| `.ping` | Check bot speed in ms |
 
 ---
 
 ### 👑 OWNER
-
 **DARK-EYE OFC DEV**  
 `#3d DEV IN ZIM` 🇿🇼  
-📧 Email: alextheon.com.free
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=435&lines=SKYPER-MD+IS+LEGEND;Powered+by+DARK-EYE+OFC+DEV" alt="Typing SVG" />
+  <a href="https://alextheon.com.free/pages/dark-eye-ofc/501894" target="_blank">
+    <img src="https://img.shields.io/badge/👑%20VISIT%20OWNER-000000?style=for-the-badge&logo=firefox&logoColor=white"/>
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=600&lines=SKYPER-MD+IS+LEGEND;Powered+by+DARK-EYE+OFC+DEV;Made+With+❤️+in+Zimbabwe" alt="Typing SVG" />
 </p>
 
 <p align="center">© 2026 SKYPER-MD. All Rights Reserved.</p>

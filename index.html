@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SKYPER-MD INSIGHTS</title>
+    <style>
+        body { background: #050505; color: #00F7FF; font-family: 'Courier New'; padding: 20px; }
+        h1 { text-align: center; color: #25D366; text-shadow: 0 0 10px #25D366; }
+       .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+      .card { background: #111; border: 1px solid #00F7FF; padding: 20px; border-radius: 10px; text-align: center; }
+      .card h2 { margin: 0; font-size: 2em; color: #fff; }
+      .online { color: #25D366; }.offline { color: red; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #222; } td, th { padding: 12px; border: 1px solid #333; }
+    </style>
+</head>
+<body>
+    <h1>SKYPER-MD INSIGHTS DASHBOARD</h1>
+    <p style="text-align:center">DARK-EYE OFC DEV | #3d DEV IN ZIM</p>
+
+    <div class="grid">
+        <div class="card"><h2 id="totalUsers">0</h2><p>Total Users</p></div>
+        <div class="card"><h2 id="onlineUsers" class="online">0</h2><p>Users Online Now</p></div>
+        <div class="card"><h2 id="offlineUsers" class="offline">0</h2><p>Users Offline</p></div>
+        <div class="card"><h2 id="totalCommands">0</h2><p>Total Commands Used</p></div>
+        <div class="card"><h2 id="groups">0</h2><p>Total Groups</p></div>
+        <div class="card"><h2 id="uptime">0h</h2><p>Bot Uptime</p></div>
+        <div class="card"><h2>1</h2><p>Online Bots</p></div>
+        <div class="card"><h2>0</h2><p>Offline Bots</p></div>
+    </div>
+
+    <h2>USER LIST</h2>
+    <table id="userTable">
+        <tr><th>#</th><th>Number</th><th>Name</th><th>Status</th><th>Join Date</th></tr>
+    </table>
+
+<script>
+async function loadStats() {
+    const res = await fetch('/api/stats');
+    const data = await res.json();
+
+    document.getElementById('totalUsers').innerText = data.totalUsers;
+    document.getElementById('onlineUsers').innerText = data.onlineUsers;
+    document.getElementById('offlineUsers').innerText = data.offlineUsers;
+    document.getElementById('totalCommands').innerText = data.totalCommands;
+    document.getElementById('groups').innerText = data.groups;
+    document.getElementById('uptime').innerText = data.uptime;
+
+    const table = document.getElementById('userTable');
+    table.innerHTML = `<tr><th>#</th><th>Number</th><th>Name</th><th>Status</th><th>Join Date</th></tr>`;
+    data.users.forEach((u, i) => {
+        let date = new Date(u.joinDate).toLocaleDateString();
+        let status = u.status === "online"? `<span class="online">ONLINE</span>` : `<span class="offline">OFFLINE</span>`;
+        table.innerHTML += `<tr><td>${i+1}</td><td>${u.number}</td><td>${u.name}</td><td>${status}</td><td>${date}</td></tr>`;
+    });
+}
+loadStats();
+setInterval(loadStats, 5000); // Refresh every 5 seconds
+</script>
+</body>
+</html>
