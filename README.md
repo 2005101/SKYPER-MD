@@ -52,15 +52,13 @@
 | `.ping` | Check bot speed in ms |
 
 ---
-....
-
-
-   /''''''''''"""\
-    —☆DARK-EYE☆—
-   \,,,,,,,,,,,,/
-
-
-Look at type of that eye
+<p align="center">
+   <a
+     href="https://github.com/2005101/SKYPER-MD/fork" target="_blank">
+     <img
+src="https://img.shields.io/badge/DARK-EYE%20OFC%20DEV%20-gggggg?style=for-the-badge&logo=edge&logoColor=red"/>
+   </a>
+</p>
 
 ### 👑 OWNER
 **DARK-EYE OFC DEV**  
