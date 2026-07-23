@@ -3,11 +3,14 @@
   "version": "2.0.0",
   "type": "module",
   "main": "index.js",
-  "scripts": { "start": "node index.js" },
+  "scripts": {
+    "start": "node dashboard.js & node index.js"
+  },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
     "@whiskeysockets/baileys": "^6.7.5",
-    "express": "^4.18.2",
+    "axios": "^1.18.1",
+    "express": "^4.22.2",
     "pino": "^9.3.2"
   }
 }

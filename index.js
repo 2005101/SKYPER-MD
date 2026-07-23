@@ -1,11 +1,14 @@
 import express from 'express';
 import makeWASocket, { DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, Browsers } from '@whiskeysockets/baileys'
 import P from 'pino'
+import axios from 'axios' // <- ADD THIS
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 10000;
+
+const DASHBOARD_URL = "https://skyper-md.onrender.com" // <- YOUR DASHBOARD URL
 
 let sock;
 let latestCode = "Waiting for bot to start...";
@@ -50,28 +53,50 @@ async function startBot() {
     const { version } = await fetchLatestBaileysVersion()
     sock = makeWASocket({ version, logger: P({ level: 'error' }), auth: state, browser: Browsers.ubuntu('Firefox') })
     sock.ev.on('creds.update', saveCreds)
+    
     sock.ev.on('connection.update', async (update) => {
         const { connection, lastDisconnect } = update
         if(connection === 'close') {
             const statusCode = (lastDisconnect.error)?.output?.statusCode
-            const shouldReconnect = statusCode!== DisconnectReason.loggedOut
+            const shouldReconnect = statusCode !== DisconnectReason.loggedOut
             if(shouldReconnect) setTimeout(startBot, 3000)
         }
-        else if(connection === 'open') console.log(`${config.botName} IS CONNECTED ✅`)
+        else if(connection === 'open') {
+            console.log(`${config.botName} IS CONNECTED ✅`)
+            
+            // WHEN USER PAIRS - SEND TO DASHBOARD
+            try {
+                await axios.post(`${DASHBOARD_URL}/api/add-user`, {
+                    number: sock.user.id.split(':')[0],
+                    name: sock.user.name || "Unknown"
+                });
+                console.log("User data sent to dashboard")
+            } catch(e) {
+                console.log("Dashboard offline")
+            }
+        }
     })
+
     sock.ev.on('messages.upsert', async ({ messages }) => {
-        if(!messages[0] ||!messages[0].message) return
+        if(!messages[0] || !messages[0].message) return
         const m = messages[0]
         const from = m.key.remoteJid
         const body = m.message.conversation || m.message.extendedTextMessage?.text || ''
         if(!body.startsWith(config.prefix)) return
+
+        // WHEN ANY COMMAND IS USED - SEND TO DASHBOARD
+        try {
+            await axios.post(`${DASHBOARD_URL}/api/command`, {});
+        } catch(e) {}
+
         const args = body.slice(config.prefix.length).trim().split(/ +/)
         const cmd = args.shift().toLowerCase()
         const reply = (text) => sock.sendMessage(from, { text }, { quoted: m })
         const header = `╭──❒「 *${config.botName}* 」❒──╮\n│≈□ *Version :* ${config.version}\n│≈□ *Prefix :* ${config.prefix}\n│≈□ *OWNER :* ${config.ownerName}\n╰────────────────────❒\n\n`;
+        
         if (cmd === 'menu' || cmd === 'help') reply(header + boxMenu('COMMANDS', ['menu', 'alive', 'ping']) + `_More coming soon_`)
         if (cmd === 'alive') reply(boxMenu('BOT STATUS', [`Bot: ${config.botName} ✅`, `Version: ${config.version}`, `Runtime: ${Math.floor(process.uptime()/60)}m`]))
         if (cmd === 'ping') { const s = Date.now(); await reply('Pong...'); reply(`${Date.now() - s}ms`) }
       })
-  }
+}
 startBot()
