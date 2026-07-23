@@ -1,16 +1,24 @@
 {
   "name": "skyper-md",
   "version": "2.0.0",
-  "type": "module",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node dashboard.js & node index.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "@hapi/boom": "^10.0.1",
     "@whiskeysockets/baileys": "^6.7.5",
-    "axios": "^1.18.1",
-    "express": "^4.22.2",
-    "pino": "^9.3.2"
+    "axios": "^1.6.8",
+    "canvas": "^2.11.2",
+    "express": "^4.18.2",
+    "jimp": "^0.22.10",
+    "moment": "^2.30.1",
+    "pino": "^8.19.0",
+    "qrcode": "^1.5.3",
+    "qrcode-reader": "^1.0.4",
+    "translate-google": "^1.5.0",
+    "wa-sticker-formatter": "^3.1.1",
+    "yt-search": "^2.11.1",
+    "ytdl-core": "^4.11.5"
   }
 }
