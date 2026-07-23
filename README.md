@@ -56,7 +56,7 @@
    <a
      href="https://github.com/2005101/SKYPER-MD/fork" target="_blank">
      <img
-src="https://img.shields.io/badge/🪝%20DARK-EYE%20OFC%20DEV%20-000000?style=for-the-badge&logo=firefox&logoColor=white"/>
+src="https://img.shields.io/badge/🪝%20DARK-EYE%20OFC%20DEV%20-000000?style=for-the-badge&logo=chrome&logoColor=white"/>
    </a>
 </p>
 
