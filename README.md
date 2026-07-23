@@ -52,6 +52,15 @@
 | `.ping` | Check bot speed in ms |
 
 ---
+....
+
+
+   /''''''''''"""\
+    —☆DARK-EYE☆—
+   \,,,,,,,,,,,,/
+
+
+Look at type of that eye
 
 ### 👑 OWNER
 **DARK-EYE OFC DEV**  
