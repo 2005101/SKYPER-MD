@@ -1,76 +1,98 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-let usersDB = './users.json';
-let statsDB = './stats.json';
-
-// Init stats file
-if(!fs.existsSync(statsDB)) fs.writeFileSync(statsDB, JSON.stringify({
-    totalCommands: 0,
-    groups: 0,
-    uptimeStart: Date.now()
-}));
-
-app.use(express.static('public'));
-app.use(express.json());
-
-// 1. BOT SENDS USER DATA
-app.post('/api/add-user', (req, res) => {
-    const { number, name } = req.body;
-    let users = fs.existsSync(usersDB)? JSON.parse(fs.readFileSync(usersDB)) : [];
-
-    let user = users.find(u => u.number === number);
-    if(!user){
-        users.push({
-            number, name,
-            joinDate: new Date().toISOString(),
-            lastSeen: Date.now(),
-            status: "online"
-        });
-    } else {
-        user.lastSeen = Date.now();
-        user.status = "online";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKYPER-MD Dashboard</title>
+<style>
+    body {
+        background: #0a0a0a;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        padding: 20px;
     }
-    fs.writeFileSync(usersDB, JSON.stringify(users, null, 2));
-    res.json({status: "ok"});
-});
+    h1 { margin-bottom: 30px; }
+   .dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 15px;
+        max-width: 900px;
+        margin: auto;
+    }
+   .card {
+        background: #1a1a1a;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 15px rgba(255,255,255,0.05);
+        transition: 0.3s;
+    }
+   .card:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(0,255,255,0.2); }
+   .icon { font-size: 35px; margin-bottom: 10px; }
+   .title { font-size: 14px; color: #aaa; }
+   .value { font-size: 22px; font-weight: bold; margin-top: 5px; }
+   .pair-btn {
+        margin-top: 30px;
+        padding: 12px 25px;
+        background: black;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
 
-// 2. BOT SENDS COMMAND STATS
-app.post('/api/command', (req, res) => {
-    let stats = JSON.parse(fs.readFileSync(statsDB));
-    stats.totalCommands += 1;
-    fs.writeFileSync(statsDB, JSON.stringify(stats));
-    res.json({status: "ok"});
-});
+<h1>🤖 SKYPER-MD Dashboard</h1>
 
-// 3. GET ALL DATA FOR DASHBOARD
-app.get('/api/stats', (req, res) => {
-    let users = fs.existsSync(usersDB)? JSON.parse(fs.readFileSync(usersDB)) : [];
-    let stats = JSON.parse(fs.readFileSync(statsDB));
+<div class="dashboard">
+    <div class="card">
+        <div class="icon">🌷</div>
+        <div class="title">Users</div>
+        <div class="value" id="users">0</div>
+    </div>
 
-    // Check who is online: lastSeen < 5 mins
-    const fiveMinAgo = Date.now() - 5 * 60 * 1000;
-    users.forEach(u => u.status = u.lastSeen > fiveMinAgo? "online" : "offline");
+    <div class="card">
+        <div class="icon">🖥</div>
+        <div class="title">TTL Bots Connected</div>
+        <div class="value" id="ttlBots">0</div>
+    </div>
 
-    let uptime = Date.now() - stats.uptimeStart;
-    let uptimeHours = Math.floor(uptime / 1000 / 60 / 60);
+    <div class="card">
+        <div class="icon">🔥</div>
+        <div class="title">Online Bots</div>
+        <div class="value" id="onlineBots">0</div>
+    </div>
 
-    res.json({
-        totalUsers: users.length,
-        onlineUsers: users.filter(u => u.status === "online").length,
-        offlineUsers: users.filter(u => u.status === "offline").length,
-        totalCommands: stats.totalCommands,
-        groups: stats.groups,
-        uptime: `${uptimeHours}h`,
-        users: users
-    });
-});
+    <div class="card">
+        <div class="icon">✨</div>
+        <div class="title">Speed</div>
+        <div class="value" id="speed">0ms</div>
+    </div>
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+    <div class="card">
+        <div class="icon">📂</div>
+        <div class="title">TTL Cmds Used</div>
+        <div class="value" id="ttlCmds">0</div>
+    </div>
+</div>
 
-app.listen(PORT, () => console.log(`INSIGHTS running on ${PORT}`));
+<button class="pair-btn" onclick="window.location.href='/pair'">🔑 Go to Pair Code</button>
+
+<script>
+async function loadStats() {
+    const res = await fetch('/api/insights')
+    const data = await res.json()
+    document.getElementById('users').innerText = data.users
+    document.getElementById('ttlBots').innerText = data.ttlBots
+    document.getElementById('onlineBots').innerText = data.onlineBots
+    document.getElementById('speed').innerText = data.speed
+    document.getElementById('ttlCmds').innerText = data.ttlCmds
+}
+loadStats()
+setInterval(loadStats, 5000) // refresh every 5s
+</script>
+
+</body>
+</html>
