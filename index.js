@@ -1,3 +1,6 @@
+import fs from 'fs'
+import os from 'os'
+import { exec } from 'child_process'
 import express from 'express';
 import makeWASocket, { DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, Browsers } from '@whiskeysockets/baileys'
 import P from 'pino'
@@ -19,7 +22,8 @@ const config = {
   "ownerNumber": "263783546271",
   "botName": "SKYPER-MD",
   "version": "2.0.0",
-  "mode": "public"
+  "mode": "public",
+  "watermark": "> *♤powered by DARK-EYE OFC DEV*"
 }
 
 const boxMenu = (title, lines) => {
