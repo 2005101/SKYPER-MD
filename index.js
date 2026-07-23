@@ -34,11 +34,11 @@ const config = {
   "mode": "public",
   "watermark": "> *♤powered by DARK-EYE OFC DEV*",
   "apiKeys": {
-    "openweather": "YOUR_OPENWEATHER_KEY",
-    "removebg": "YOUR_REMOVEBG_KEY",
-    "lovable": "YOUR_LOVABLE_URL",
-    "unsplash": "YOUR_UNSPLASH_KEY",
-    "news": "YOUR_NEWSAPI_KEY"
+    "openweather": "bbb24c9273118505d94d0263058c4655",
+    "removebg": "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",
+    "lovable": "AQ.Ab8RN6LFQnxIs4OXxlG6zIl34_gfu_Ai7qcq4hq19_K440VdIQ",
+    "unsplash": "rc_YXuNSLPAuEu-dEfMa_eJPtVsJhNvQ7fOShldnMzU",
+    "news": "94091ee07cc4465e91ecdf212421d53f"
   }
 }
 
