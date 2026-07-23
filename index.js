@@ -81,6 +81,16 @@ async function startBot() {
         }
     })
 
+global.totalCommands = global.totalCommands || 0
+
+sock.ev.on('messages.upsert', async ({ messages }) => {
+    const m = messages[0]
+    if(!m.message) return
+    const text = m.message.conversation || m.message.extendedTextMessage?.text || ''
+    if(text.startsWith(PREFIX)) global.totalCommands++
+    //...rest of your code
+})
+  
     const VERSION = config.version
 const PREFIX = config.prefix
 const OWNER = config.ownerName
