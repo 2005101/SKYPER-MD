@@ -2,6 +2,8 @@
   <img src="./logo.png" alt="SKYPER-MD Banner" width="600"/>
 </p>
 
+---
+
 <h1 align="center">SKYPER-MD 🤖</h1>
 <p align="center">
   <b>LEGEND PRO ULTRA FAST WhatsApp Bot</b><br>
@@ -13,6 +15,18 @@
   <img src="https://img.shields.io/badge/Node.js-18+-green?style=flat-square&logo=node.js"/>
   <img src="https://img.shields.io/badge/Status-Online-brightgreen?style=flat-square"/>
 </p>
+
+---
+
+<p align="center">
+   <a
+     href="https://github.com/2005101/SKYPER-MD/fork" target="_blank">
+     <img
+src="https://img.shields.io/badge/🪝%20FORK%20REPOSITORY-CLICK%20HERE%20-000000?style=for-the-badge&logo=firefox&logoColor=white"/>
+   </a>
+</p>
+
+____
 
 <p align="center">
   <a href="https://skyper-md.onrender.com/" target="_blank">
@@ -52,13 +66,7 @@
 | `.ping` | Check bot speed in ms |
 
 ---
-<p align="center">
-   <a
-     href="https://github.com/2005101/SKYPER-MD/fork" target="_blank">
-     <img
-src="https://img.shields.io/badge/🪝%20DARK-EYE%20OFC%20DEV%20-000000?style=for-the-badge&logo=chrome&logoColor=white"/>
-   </a>
-</p>
+
 
 ### 👑 OWNER
 **DARK-EYE OFC DEV**  
